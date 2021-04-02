@@ -802,6 +802,15 @@ class NewCell(object):
     def sort_key(self, value):
         self._sort_key = value
 
+    @ property
+    def data(self):
+        """ cell data """
+        return self._data
+
+    @ data.setter
+    def data(self, value):
+        self._data = value
+
     def _on_press_button(self, *args):
         """ On press method for current object """
         self.parent.current_cell = args[0]

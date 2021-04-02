@@ -50,10 +50,11 @@ class MainScreen(BoxLayout):
         self.my_table.cols = 3
         self.my_table.cols_width = [300, 500, 'auto']
         for i in range(10):
-            self.my_table.add_row([Button, {'text': 'button%s' % i,
+            self.my_table.add_row([Button, {'text': 'button{:02}'.format(i),
                                             'sort_key': float,
                                             'color_widget': [0, 0, 0.5, 1],
-                                            'color_click': [0, 1, 0, 1]
+                                            'color_click': [0, 1, 0, 1],
+                                            'data': i
                                             }],
                                   [TextInput, {'text': str(random.uniform(0, 100)),
                                                'sort_key': float,
@@ -64,6 +65,16 @@ class MainScreen(BoxLayout):
                                             'color_click': [0.8, 0.8, 0.8, 1]
                                             }],
                                   )
+        self.my_table.label_panel.visible = False
+        self.my_table.label_panel.height_widget = 50
+        self.my_table.number_panel.auto_width = False
+        self.my_table.number_panel.width_widget = 100
+        self.my_table.number_panel.visible = False
+        self.my_table.choose_row(3)
+        self.my_table.del_row(5)
+        self.my_table.grid.color = [1, 0, 0, 1]
+        self.my_table.label_panel.color = [0, 1, 0, 1]
+        self.my_table.number_panel.color = [0, 0, 1, 1]
         self.my_table.scroll_view.bar_width = 10
         self.my_table.scroll_view.scroll_type = ['bars']
         self.my_table.grid.cells[0][0].text = 'edited button text'
@@ -84,7 +95,7 @@ class MainScreen(BoxLayout):
     def on_select_table_row(self, *args, **kwargs):
         print("selected row is:", self.my_table.chosen_row)
         print("selected row data is:",
-              self.my_table.grid.cells[self.my_table.chosen_row][2].text)
+              self.my_table.grid.cells[self.my_table.chosen_row][0].data)
 
 
 class TestApp(App):
