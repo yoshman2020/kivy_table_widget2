@@ -150,7 +150,6 @@ class Table(FocusBehavior, BoxLayout):
                 cell = Cell()
                 for key in item[1].keys():
                     setattr(cell, key, item[1][key])
-                    print(f'{self.row_count}:{key}={item[1][key]}')
                 cell.width = self.label_panel.children[
                     self._cols - num % self._cols - 1].width
                 cell.cell_type = item[0]
@@ -796,7 +795,6 @@ class NewCell(object):
         # print('pressed on grid item')
         self.main_table = self.parent.parent.parent.parent
         self.grid = self.parent
-        # self.color = self._color
         self.main_table.choose_row(self.grid._get_row_index(self))
 
     def _redraw_widget(self, *args):
