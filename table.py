@@ -116,6 +116,15 @@ class Table(FocusBehavior, BoxLayout):
             count += 1
         return count
 
+    @ property
+    def chosen_row(self):
+        """ selected row number """
+        return self._chosen_row
+
+    @ chosen_row.setter
+    def chosen_row(self, value):
+        self._chosen_row = value
+
     def add_button_row(self, *args):
         """
         Add new row to table with Button widgets.
@@ -202,6 +211,7 @@ class Table(FocusBehavior, BoxLayout):
                     old_grid_element.color_widget)
                 current_cell._background_color(current_cell.color_click)
             self._chosen_row = row_num
+            self.on_select()
         elif len(self.grid.cells) == 0:
             print('ERROR: Nothing to choose...')
         else:
@@ -360,6 +370,10 @@ class Table(FocusBehavior, BoxLayout):
         ]
         label_col.canvas.after.add(
             Line(points=points, width=1, close=True))
+        pass
+
+    def on_select(self, *args, **kwargs):
+        """ override this method when customize the action """
         pass
 
 

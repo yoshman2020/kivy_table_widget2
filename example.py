@@ -17,6 +17,7 @@ from kivy.clock import Clock
 from kivy.config import Config
 from kivy.lang import Builder
 
+import string
 import random
 
 Config.set("input", "mouse", "mouse, disable_multitouch")
@@ -71,18 +72,19 @@ class MainScreen(BoxLayout):
         self.my_table.label_panel.labels[1].text = '列１'
         self.my_table.label_panel.labels[2].text = '列２'
         self.my_table.label_panel.labels[3].text = '列３'
+        self.my_table.on_select = self.on_select_table_row
         # print("ROW COUNT:", self.my_table.row_count)
 
     def randomname(self, n):
 
-        words = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "さ", "し", "す", "せ", "そ", "た", "ち", "つ", "て", "と", "な", "に", "ぬ",
-                 "ね", "の", "は", "ひ", "ふ", "へ", "ほ", "ま", "み", "む", "め", "も", "や", "ゆ", "よ", "ら", "り", "る", "れ", "ろ", "わ", "を", "ん"]
-        word = ""
-        for i in range(n):
-            word += words[random.randint(0, len(words) - 1)]
-        return word
+        kana = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん'
 
-        # return ''.join(random.choices(string.ascii_letters + string.digits, k=n))
+        return ''.join(random.choices(string.ascii_letters + string.digits + kana, k=n))
+
+    def on_select_table_row(self, *args, **kwargs):
+        print("selected row is:", self.my_table.chosen_row)
+        print("selected row data is:",
+              self.my_table.grid.cells[self.my_table.chosen_row][2].text)
 
 
 class TestApp(App):
