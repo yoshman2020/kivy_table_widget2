@@ -1,0 +1,86 @@
+#:kivy 2.0
+
+# Table style file
+# Copyright (C) 2021 Yoshman <yoshman2020@gmail.com>
+# Copyright (C) 2014 Musikhin Andrey <melomansegfault@gmail.com>
+
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import ScrollEffect  kivy.effects.scroll.ScrollEffect
+
+# GUI Structure
+
+<Table>: #@BoxLayout
+    orientation: 'vertical'
+
+    ScrollViewLabel:
+        height: 30
+        size_hint: 1, None
+        scroll_type: ['bars']
+        bar_width: 0
+
+        LabelPanel: #@BoxLayout
+            orientation: 'horizontal'
+            height: 30
+            size_hint: None, None
+
+            NullLabel: #@Button
+                width: 30
+                size_hint: None, 1
+                background_color: [.5, .5, .5, 1]
+                text: 'No'
+
+            # Other objects are added dynamically
+            #NewLabelSplitter:
+                #NewLabel: #@Button
+
+    ScrollViewTable: #@ScrollView
+        size_hint: 1, 1
+        size: self.size
+        scroll_type: ['bars']
+        bar_width: 10
+        effect_cls: ScrollEffect
+
+        ScrollViewBoxLayout: #@GridLayout
+            orientation: 'lr-tb'
+            cols: 2
+            size_hint: None, None # Not scroll without it
+
+            NumberPanel: #@BoxLayout
+                orientation: 'vertical'
+                size_hint: None, 1
+                width: 30
+                #NewNumberLabel: #@BoxLayout
+                    #NewCell
+
+            GridTable: #@GridLayout
+                size_hint: None, None # Not scroll without it
+                canvas.before:
+                    Color:
+                        a: 0
+                #NewCell: #@object
+
+<NewLabel>: #@BoxLayout
+    orientation: 'horizontal'
+    size_hint: None, 1
+    canvas.after:
+        Color:
+            rgba: .5, .5, .5, 1
+    Label:
+        id: new_label
+        text: 'Label'
+        valign: 'middle'
+        halign: 'center'
+        background_color: [.5, .5, .5, 1]
+
+<NewCell>: #@object
+    size_hint: None, None
+    height: 30
+    valign: 'middle'
+
+# add to NumberPanel when add_button_row
+<NewNumberLabel>: #@Button
+    size_hint: 1, None
+    height: 30
+    valign: 'middle'
+    halign: 'center'
+    background_color: [.5, .5, .5, 1]
