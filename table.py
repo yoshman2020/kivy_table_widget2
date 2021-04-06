@@ -232,7 +232,7 @@ class Table(FocusBehavior, BoxLayout):
     def _on_focus(self, instance, value, *largs):
         # without this method, error occurred when set focus
         try:
-            super()._on_focus(instance, value, *largs)
+            super(Table, self)._on_focus(instance, value, *largs)
         except KeyError:
             pass
         pass
@@ -514,7 +514,7 @@ class ScrollViewTable(ScrollView):
 
     def on_scroll_move(self, *args, **kwargs):
         """ scroll with hedder """
-        super().on_scroll_move(*args, **kwargs)
+        super(ScrollViewTable, self).on_scroll_move(*args, **kwargs)
         self.parent._label_panel.parent.scroll_x = self.scroll_x
 
 
@@ -551,7 +551,7 @@ class ScrollViewLabel(ScrollView):
             self.height = 0
 
     def on_scroll_move(self, *args, **kwargs):
-        super().on_scroll_move(*args, **kwargs)
+        super(ScrollViewLabel, self).on_scroll_move(*args, **kwargs)
         self.parent._scroll_view.scroll_x = self.scroll_x
 
 
