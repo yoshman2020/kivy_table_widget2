@@ -197,6 +197,9 @@ class Table(FocusBehavior, BoxLayout):
         else:
             print('ERROR: Nothing to delete...')
 
+    def del_row_all(self):
+        [self.del_row(0) for cell in self.grid.cells[:]]
+
     def choose_row(self, row_num=0, edit_row=False):
         # def choose_row(self, row_num=0):
         """
