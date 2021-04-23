@@ -54,7 +54,8 @@ class MainScreen(BoxLayout):
                                             'sort_key': float,
                                             'color_widget': [0, 0, 0.5, 1],
                                             'color_click': [0, 1, 0, 1],
-                                            'data': i
+                                            'data': i,
+                                            'halign': 'left',
                                             }],
                                   [TextInput, {'text': str(random.uniform(0, 100)),
                                                'sort_key': float,
