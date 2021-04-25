@@ -945,3 +945,8 @@ class NewNumberLabel(Button):
         """ On press method for current object """
         self.state = 'normal'
         # print('pressed on number label')
+
+
+class CellButton(Button):
+    """ Button to set halign """
+    pass

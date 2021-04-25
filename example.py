@@ -20,6 +20,8 @@ from kivy.lang import Builder
 import string
 import random
 
+from table import CellButton
+
 Config.set("input", "mouse", "mouse, disable_multitouch")
 Window.size = (500, 300)
 
@@ -50,13 +52,13 @@ class MainScreen(BoxLayout):
         self.my_table.cols = 3
         self.my_table.cols_width = [300, 500, 'auto']
         for i in range(10):
-            self.my_table.add_row([Button, {'text': 'button{:02}'.format(i),
-                                            'sort_key': float,
-                                            'color_widget': [0, 0, 0.5, 1],
-                                            'color_click': [0, 1, 0, 1],
-                                            'data': i,
-                                            'halign': 'left',
-                                            }],
+            self.my_table.add_row([CellButton, {'text': 'button{:02}'.format(i),
+                                                'sort_key': float,
+                                                'color_widget': [0, 0, 0.5, 1],
+                                                'color_click': [0, 1, 0, 1],
+                                                'data': i,
+                                                'halign': 'left',
+                                                }],
                                   [TextInput, {'text': str(random.uniform(0, 100)),
                                                'sort_key': float,
                                                'color_click': [1, 0, .5, 1]
